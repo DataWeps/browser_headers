@@ -1,5 +1,6 @@
 require 'rspec'
 require 'browser_headers'
+require 'net/http'
 
 describe BrowserHeaders do
   context 'get data from' do
@@ -47,6 +48,14 @@ describe BrowserHeaders do
       second_date = @headers.instance_variable_get(:@headers)
                             .instance_variable_get(:@last_update)
       expect(second_date).to be > first_date
+    end
+
+    it 'creates correct uri' do
+      @headers.fetch_headers
+      headers_helper = @headers.instance_variable_get(:@headers)
+      last_update = headers_helper.instance_variable_get(:@last_update)
+      uri = headers_helper.make_uri
+      expect(uri.query).to eq("since=#{last_update.strftime('%F')}")
     end
   end
 end
