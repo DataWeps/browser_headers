@@ -33,7 +33,7 @@ module BrowserHeaders
     end
 
     def ping
-      puts @redis.ping
+      @redis.ping
     end
 
     def config
