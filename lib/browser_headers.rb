@@ -14,19 +14,20 @@ module BrowserHeaders
         end
       end
       ini_redis
+      @headers = Headers.new(@redis, @config)
     end
 
     def ini_redis
-      if @config.redis_url
-        @redis = Redis.new(:url => @config.redis_url)
-      elsif @config.redis_host && @config.redis_port && @config.redis_db
-        @redis = Redis.new(:host => @config.redis_host,
-                           :port => @config.redis_port,
-                           :db => @config.redis_db)
-      else
-        @redis = Redis.new
-      end
-      @headers = Headers.new(@redis, @config)
+      @redis =
+        if @config.redis_url
+          Redis.new(:url => @config.redis_url)
+        elsif @config.redis_host && @config.redis_port && @config.redis_db
+          Redis.new(:host => @config.redis_host,
+                             :port => @config.redis_port,
+                             :db => @config.redis_db)
+        else
+          Redis.new
+        end
     end
 
     def ping

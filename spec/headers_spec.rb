@@ -8,7 +8,9 @@ describe BrowserHeaders do
         redis_host: '127.0.0.1',
         redis_port: '6379',
         redis_db: '0',
-        server_url: 'http://127.0.0.1:3000/'
+        server_url: 'http://127.0.0.1:3000/',
+        login: 'admin',
+        password: 'admin'
       )
       @redis = Redis.new
       @redis.del('headers')
