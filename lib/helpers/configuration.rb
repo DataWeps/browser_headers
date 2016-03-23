@@ -1,18 +1,17 @@
 module BrowserHeaders
   class Client
     class Configuration
-      VALID_CONFIGURATION =
-          [
-              :redis_url,
-              :redis_host,
-              :redis_port,
-              :redis_db,
-              :server_url,
-              :login,
-              :password
-          ]
+      VALID_CONFIGURATION = [
+        :redis_url,
+        :redis_host,
+        :redis_port,
+        :redis_db,
+        :server_url,
+        :login,
+        :password
+      ]
 
-      attr_accessor *VALID_CONFIGURATION
+      attr_accessor(*VALID_CONFIGURATION)
 
       def configure
         yield self

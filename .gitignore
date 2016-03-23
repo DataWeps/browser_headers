@@ -12,3 +12,5 @@ jumpshot_data/
 clear/
 .ruby-version
 TAGS
+.idea
+*.sh
