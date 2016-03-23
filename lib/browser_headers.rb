@@ -1,8 +1,5 @@
 require 'helpers/configuration'
 require 'redis'
-require 'json'
-require 'net/http'
-require 'date'
 require 'helpers/headers'
 
 module BrowserHeaders

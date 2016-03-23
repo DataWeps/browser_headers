@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name        = 'browser_headers'
-  s.version     = '0.0.0'
+  s.version     = '0.0.1'
   s.date        = '2016-03-20'
   s.summary     = 'Browser Headers'
   s.description = 'Gem for downloading current browser headers'

@@ -1,3 +1,8 @@
+require 'json'
+require 'net/http'
+require 'date'
+require 'redis'
+
 module BrowserHeaders
   class Headers
     def initialize(redis, config)
