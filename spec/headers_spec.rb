@@ -2,6 +2,8 @@ require 'rspec'
 require 'browser_headers'
 require 'net/http'
 
+TABLE_NAME = 'headers:headers'
+
 describe BrowserHeaders do
   context 'browser_headers gem' do
     let(:headers) do
@@ -22,7 +24,7 @@ describe BrowserHeaders do
 
     it 'downloads headers' do
       headers.fetch_headers
-      expect(redis.zcard('headers')).to be > 0
+      expect(redis.zcard(TABLE_NAME)).to be > 0
     end
 
     it 'returns correct number of headers' do
@@ -34,9 +36,9 @@ describe BrowserHeaders do
 
     it 'does not duplicate headers' do
       headers.fetch_headers
-      header_count = redis.zcard('headers')
+      header_count = redis.zcard(TABLE_NAME)
       headers.fetch_headers
-      header_count -= redis.zcard('headers')
+      header_count -= redis.zcard(TABLE_NAME)
       expect(header_count).to be 0
     end
 
@@ -58,6 +60,6 @@ describe BrowserHeaders do
       expect(uri.query).to eq("since=#{last_update.strftime('%F')}")
     end
 
-    after(:each) { Redis.new.del('headers') }
+    after(:each) { Redis.new.del(TABLE_NAME) }
   end
 end

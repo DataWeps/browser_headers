@@ -5,6 +5,8 @@ require 'redis'
 
 module BrowserHeaders
   class Headers
+    TABLE_NAME = 'headers:headers'
+
     def initialize(redis, config)
       @redis = redis
       @config = config
@@ -13,11 +15,11 @@ module BrowserHeaders
     def update_headers
       uri = make_uri
       response = download_login(uri)
-      headers_count = @redis.zcard('headers') + 1
+      headers_count = @redis.zcard(TABLE_NAME) + 1
       parsed = JSON.parse(response.body)
       parsed.each_with_index do |browser, index|
-        unless @redis.zrank('headers', browser['header'])
-          @redis.zadd('headers', index + headers_count, browser['header'])
+        unless @redis.zrank(TABLE_NAME, browser['header'])
+          @redis.zadd(TABLE_NAME, index + headers_count, browser['header'])
         end
       end
       @last_update = DateTime.now
@@ -42,7 +44,7 @@ module BrowserHeaders
     end
 
     def get_headers(number)
-      @redis.zrange('headers', -number, -1)
+      @redis.zrange(TABLE_NAME, -number, -1)
     end
   end
 end
