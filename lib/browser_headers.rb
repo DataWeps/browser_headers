@@ -2,6 +2,8 @@ require 'helpers/configuration'
 require 'redis'
 require 'helpers/headers'
 
+OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE
+
 module BrowserHeaders
   class Client
     def initialize(params = {}, &block)
