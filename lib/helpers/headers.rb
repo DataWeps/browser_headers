@@ -35,7 +35,7 @@ module BrowserHeaders
     end
 
     def download_login(uri)
-      req = Net::HTTP::Get.new(uri)
+      req = Net::HTTP::Get.new(uri.request_uri)
       req.basic_auth @config.login, @config.password
       Net::HTTP.start(uri.hostname, uri.port,
                                  :use_ssl => uri.scheme == 'https') do |http|
