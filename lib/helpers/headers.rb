@@ -46,5 +46,10 @@ module BrowserHeaders
     def get_headers(number)
       @redis.zrange(TABLE_NAME, -number, -1)
     end
+
+    def get_random_header
+      number = rand(@redis.zcard(TABLE_NAME) + 1)
+      @redis.zrange(TABLE_NAME, number , number)
+    end
   end
 end

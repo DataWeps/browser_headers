@@ -47,5 +47,9 @@ module BrowserHeaders
     def get_headers(number)
       @headers.get_headers(number)
     end
+
+    def get_random_header
+      @headers.get_random_header
+    end
   end
 end
