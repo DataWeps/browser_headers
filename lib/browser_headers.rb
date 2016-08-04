@@ -1,6 +1,9 @@
+# encoding:utf-8
 require 'helpers/configuration'
 require 'redis'
 require 'helpers/headers'
+
+OpenSSL::SSL::VERIFY_PEER ||= OpenSSL::SSL::VERIFY_NONE
 
 module BrowserHeaders
   class Client
@@ -23,8 +26,8 @@ module BrowserHeaders
           Redis.new(:url => @config.redis_url)
         elsif @config.redis_host && @config.redis_port && @config.redis_db
           Redis.new(:host => @config.redis_host,
-                             :port => @config.redis_port,
-                             :db => @config.redis_db)
+                    :port => @config.redis_port,
+                    :db => @config.redis_db)
         else
           Redis.new
         end
