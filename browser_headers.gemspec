@@ -8,7 +8,7 @@ Gem::Specification.new do |s|
   s.email       = 'mosat@weps.cz'
   s.files       = ['lib/browser_headers.rb', 'lib/helpers/configuration.rb',
                    'lib/helpers/headers.rb']
-  s.add_runtime_dependency 'redis', '~>2.2'
+  s.add_runtime_dependency 'redis', '~>3.3'
   s.add_development_dependency 'bundler', '~> 1.11'
   s.add_development_dependency 'rake', '~> 11.0 '
   s.add_development_dependency 'rspec', '~> 3.4'
