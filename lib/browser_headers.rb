@@ -3,6 +3,8 @@ require 'helpers/configuration'
 require 'redis'
 require 'helpers/headers'
 
+require 'openssl'
+
 OpenSSL::SSL::VERIFY_PEER ||= OpenSSL::SSL::VERIFY_NONE
 
 module BrowserHeaders
